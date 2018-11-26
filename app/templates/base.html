@@ -1,0 +1,38 @@
+<!-- THIS IS THE BASE WEBPAGE TEMPLATE FROM WHICH ALL OTHER TEMPLATES ARE DERRIVED -->
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - newScene</title>
+        {% else %}
+        <title>Welcome to newScene</title>
+        {% endif %}
+    </head>
+    <body>
+        <!-- THIS IS THE NAVIGATION BAR -->
+        <div>
+            newScene:
+            <a href="{{ url_for('index') }}">Home</a>
+            {% if current_user.is_anonymous %}
+            <a href="{{ url_for('login') }}">Login</a>
+            {% else %}
+            <a href="{{ url_for('user', username=current_user.username) }}">Profile</a>
+            <a href="{{ url_for('findmovies', username=current_user.username) }}">Find Movies</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+            {% endif %}
+        </div>
+        <hr>
+        <!-- HANDLES MESSAGES -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        <!-- PLACEHOLDER FOR CONTENT -->
+        {% block content %}{% endblock %}
+    </body>
+</html>
+

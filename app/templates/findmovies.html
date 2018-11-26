@@ -1,0 +1,33 @@
+<!-- WEBPAGE FOR MOVIE SEARCH FIELDS -->
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- HEADING -->
+    <h1>Find Movies!</h1>
+    <!-- PROMPT -->
+    <p>
+        Provide some information to help guide the search:
+    </p>
+    <!-- DISPLAYS TEXT FIELDS AND BUTTONS -->
+    <form action="" method="POST">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.genre.label }}<br>
+            {{ form.genre(size=32) }}<br>
+        </p>
+        <p>
+            {{ form.actor.label }}<br>
+            {{ form.actor(size=32) }}<br>
+        </p>
+        <p>
+            {{ form.rating.label }}<br>
+            {{ form.rating(size=32) }}<br>
+        </p>
+        <p>
+            {{ form.director.label }}<br>
+            {{ form.director(size=32) }}<br>
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
+
